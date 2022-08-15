@@ -7,12 +7,12 @@ using DZConfigTools.Core.Models.Statements;
 namespace DZConfigTools.Core.Models.Declarations; 
 
 public class RapClassDeclaration : IRapStatement, IRapDeserializable<ParamFileParser.ClassDeclarationContext> {
-    private string Classname { get; set; } = string.Empty;
-    private string? ParentClassname { get; set; } = null;
-    private List<IRapStatement> Statements { get; set; } = new();
+    public string Classname { get; set; } = string.Empty;
+    public string? ParentClassname { get; set; } = null;
+    public List<IRapStatement> Statements { get; set; } = new();
 
     public uint BinaryOffset { get; set; } = 0;
-    public long? BinaryOffsetPosition { get; set; } = null;
+    public long BinaryOffsetPosition { get; set; } = 0;
     
     public void WriteBinarized(BinaryWriter writer) {
         writer.Write((byte) 0);
@@ -30,7 +30,7 @@ public class RapClassDeclaration : IRapStatement, IRapDeserializable<ParamFilePa
     }
 
     public IRapDeserializable<ParamFileParser.ClassDeclarationContext> ReadBinarized(BinaryReader reader) {
-        if (reader.ReadByte() != 0) throw new Exception("Expected class.");
+        if ( reader.ReadByte() != 0) throw new Exception($"Expected class.");
         Classname = reader.ReadAsciiZ();
         BinaryOffsetPosition = reader.BaseStream.Position;
         BinaryOffset = reader.ReadUInt32();

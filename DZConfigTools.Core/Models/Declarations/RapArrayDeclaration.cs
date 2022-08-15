@@ -29,7 +29,8 @@ public class RapArrayDeclaration :  IRapStatement, IRapDeserializable<ParamFileP
     public IRapDeserializable<ParamFileParser.ArrayDeclarationContext> ReadParseTree(ParamFileParser.ArrayDeclarationContext ctx) {
         if (ctx.arrayName() is not { } arrayNameCtx) throw new Exception();
         if (ctx.literalArray() is not { } literalArrayCtx) throw new Exception();
-        ArrayName = ctx.Start.InputStream.GetText(new Interval(arrayNameCtx.Start.StartIndex, arrayNameCtx.Stop.StopIndex));
+        var name = arrayNameCtx.identifier() ?? throw new Exception();
+        ArrayName = ctx.Start.InputStream.GetText(new Interval(name.Start.StartIndex, name.Stop.StopIndex));
         ArrayValue.ReadParseTree(literalArrayCtx);
         return this;
     }

@@ -30,7 +30,7 @@ public class RapAppensionStatement : IRapStatement, IRapDeserializable<ParamFile
     public IRapDeserializable<ParamFileParser.ArrayAppensionContext> ReadParseTree(ParamFileParser.ArrayAppensionContext ctx) {
         if (ctx.arrayName() is not { } arrayNameCtx) throw new Exception();
         if (ctx.literalArray() is not { } literalArrayCtx) throw new Exception();
-        Target = ctx.Start.InputStream.GetText(new Interval(arrayNameCtx.Start.StartIndex, arrayNameCtx.Stop.StopIndex));
+        Target = ctx.Start.InputStream.GetText(new Interval(arrayNameCtx.identifier().Start.StartIndex, arrayNameCtx.identifier().Stop.StopIndex));
         Array.ReadParseTree(literalArrayCtx);
         return this;
     }

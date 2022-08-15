@@ -16,14 +16,17 @@ public class RapVariableDeclaration : IRapStatement, IRapDeserializable<ParamFil
         switch (VariableValue) {
             case RapString @string:
                 writer.Write((byte) 0);
+                writer.WriteAsciiZ(VariableName);
                 @string.WriteBinarized(writer);
                 break;
             case RapFloat @float:
                 writer.Write((byte) 1);
+                writer.WriteAsciiZ(VariableName);
                 @float.WriteBinarized(writer);
                 break;
             case RapInteger @int:
                 writer.Write((byte) 2);
+                writer.WriteAsciiZ(VariableName);
                 @int.WriteBinarized(writer);
                 break;
             default: throw new NotSupportedException();
