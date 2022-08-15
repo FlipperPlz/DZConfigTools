@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DZConfigTools.Core", "DZConfigTools.Core\DZConfigTools.Core.csproj", "{52B07B13-03AA-4F7C-ADEE-72335C54F103}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DZConfigTools.Tests", "DZConfigTools.Tests\DZConfigTools.Tests.csproj", "{10502259-97B6-48EC-B4F4-198956AEA0DC}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{52B07B13-03AA-4F7C-ADEE-72335C54F103}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{52B07B13-03AA-4F7C-ADEE-72335C54F103}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{52B07B13-03AA-4F7C-ADEE-72335C54F103}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{52B07B13-03AA-4F7C-ADEE-72335C54F103}.Release|Any CPU.Build.0 = Release|Any CPU
+		{10502259-97B6-48EC-B4F4-198956AEA0DC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{10502259-97B6-48EC-B4F4-198956AEA0DC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{10502259-97B6-48EC-B4F4-198956AEA0DC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{10502259-97B6-48EC-B4F4-198956AEA0DC}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
