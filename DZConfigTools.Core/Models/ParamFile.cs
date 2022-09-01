@@ -155,25 +155,22 @@ public class ParamFile : IRapDeserializable<ParamFileParser.ComputationalStartCo
     }
 
     public static Result<ParamFile> OpenStream(Stream stream) {
-        try {
-            using (var reader = new BinaryReader(stream)) {
-                var bits = reader.ReadBytes(4);
+        var memStream = new MemoryStream();
+        stream.CopyTo(memStream);
+        memStream.Seek(0, SeekOrigin.Begin);
+        using (var reader = new BinaryReader(memStream)) {
+            var bits = reader.ReadBytes(4);
+            reader.BaseStream.Position -= 4;
 
-                if (bits[0] == '\0' && bits[1] == 'r' && bits[2] == 'a' && bits[3] == 'P') {
-                    reader.BaseStream.Position -= 4;
-                    return (ParamFile)new ParamFile().ReadBinarized(reader);
-                }
-
-                reader.Close();
+            if (bits[0] == '\0' && bits[1] == 'r' && bits[2] == 'a' && bits[3] == 'P') {
+                return (ParamFile)new ParamFile().ReadBinarized(reader);
             }
-            
-            var retStream = new MemoryStream();
-            stream.CopyTo(retStream);
-            return ParseParamFile(retStream);
-            
-        } catch (Exception e) {
-            return Result<ParamFile>.Error("There was an error reading the paramfile stream");
+
+            reader.BaseStream.Seek(0, SeekOrigin.Begin);
+            reader.Close();
         }
+        return ParseParamFile(stream);
+
     }
 
     public static Result<ParamFile> OpenFile(string filePath) {
