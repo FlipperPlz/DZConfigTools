@@ -1,9 +1,11 @@
 ﻿using Antlr4.Runtime;
+using Ardalis.Result;
 using DZConfigTools.Core.Factories;
 using DZConfigTools.Core.Generated;
 using DZConfigTools.Core.IO;
 using DZConfigTools.Core.Models.Declarations;
 using DZConfigTools.Core.Models.Statements;
+using DZConfigTools.Core.Utils;
 
 namespace DZConfigTools.Core.Models; 
 
@@ -141,26 +143,73 @@ public class ParamFile : IRapDeserializable<ParamFileParser.ComputationalStartCo
     }
 
     public void WriteToFile(string filePath, bool binarized = true) {
-        using var fs = File.OpenWrite(filePath);
+        WriteToStream(binarized).WriteTo(File.OpenWrite(filePath));
+    }
+
+    public MemoryStream WriteToStream(bool binarized = true) {
+        var fs = new MemoryStream();
         using var writer = new BinaryWriter(fs);
         if(binarized) WriteBinarized(writer);
         else foreach (var c in ToParseTree()) writer.Write(c);
+        return fs;
     }
-    
-    public static ParamFile OpenFile(string filePath) {
-        using (var reader = new BinaryReader(File.OpenRead(filePath))) {
-            var bits = reader.ReadBytes(4);
 
-            if (bits[0] == '\0' && bits[1] == 'r' && bits[2] == 'a' && bits[3] == 'P') {
-                reader.BaseStream.Position -= 4;
-                return (ParamFile) new ParamFile().ReadBinarized(reader);
+    public static Result<ParamFile> OpenStream(Stream stream) {
+        try {
+            using (var reader = new BinaryReader(stream)) {
+                var bits = reader.ReadBytes(4);
+
+                if (bits[0] == '\0' && bits[1] == 'r' && bits[2] == 'a' && bits[3] == 'P') {
+                    reader.BaseStream.Position -= 4;
+                    return (ParamFile)new ParamFile().ReadBinarized(reader);
+                }
+
+                reader.Close();
             }
-            reader.Close();
+            
+            var retStream = new MemoryStream();
+            stream.CopyTo(retStream);
+            return ParseParamFile(retStream);
+            
+        } catch (Exception e) {
+            return Result<ParamFile>.Error("There was an error reading the paramfile stream");
         }
+    }
 
-        return (ParamFile)new ParamFile().ReadParseTree(
-            new ParamFileParser(new CommonTokenStream(new ParamFileLexer(CharStreams.fromPath(filePath))))
-                .computationalStart());
+    public static Result<ParamFile> OpenFile(string filePath) {
+        return OpenStream(File.OpenRead(filePath));
+    }
+
+    private static Result<ParamFile> ParseBinarizedParamFile(Stream stream) {
+        try {
+            using var reader = new BinaryReader(stream);
+            return (ParamFile) new ParamFile().ReadBinarized(reader);
+        }
+        catch {
+            return Result<ParamFile>.Error("There was an error reading a binarized paramfile");
+        }
+    }
+
+    private static Result<ParamFile> ParseParamFile(Stream stream) {
+        try {
+            var lexer = new ParamFileLexer(CharStreams.fromStream(stream));
+            var tokens = new CommonTokenStream(lexer);
+            var parser = new ParamFileParser(tokens);
+            var errorListener = new ParamFileErrorListener();
+            
+            parser.RemoveErrorListeners();
+            parser.AddErrorListener(errorListener);
+            
+            var computationalStart = parser.computationalStart();
+            
+            if (errorListener.SyntaxErrors.Count != 0) {
+                return Result<ParamFile>.Error(errorListener.SyntaxErrors.ToArray());
+            }
+
+            return (ParamFile) new ParamFile().ReadParseTree(computationalStart);
+        } catch (Exception e) {
+            return Result<ParamFile>.Error(e.Message);
+        }
     }
 
     public IRapDeserializable<ParamFileParser.ComputationalStartContext> ReadParseTree(ParamFileParser.ComputationalStartContext ctx) {

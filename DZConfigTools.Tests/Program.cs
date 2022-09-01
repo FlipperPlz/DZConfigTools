@@ -2,6 +2,8 @@
 
 using DZConfigTools.Core.Models;
 
-var f = ParamFile.OpenFile(@"C:\Program Files (x86)\Steam\steamapps\common\DayZ Tools\Bin\CfgConvert\fullconfig.bin");
-f.WriteToFile(@"C:\Users\developer\Desktop\testing\fullconfig.cpp", false);
-f.WriteToFile(@"C:\Users\developer\Desktop\testing\fullconfig.bin", true);
+var f = ParamFile.OpenFile(@"C:\Users\developer\Desktop\config.cpp");
+if (f.IsSuccess) {
+    f.Value.WriteToFile(@"C:\Users\developer\Desktop\testing\fullconfig.cpp", false);
+    f.Value.WriteToFile(@"C:\Users\developer\Desktop\testing\fullconfig.bin", false);
+}
