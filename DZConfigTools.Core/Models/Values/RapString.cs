@@ -6,7 +6,7 @@ using DZConfigTools.Core.IO;
 namespace DZConfigTools.Core.Models.Values; 
 
 public class RapString : IRapDeserializable<ParamFileParser.LiteralStringContext>, IRapLiteral, IRapArrayEntry {
-    private string Value { get; set; } = string.Empty;
+    public string Value { get; set; } = string.Empty;
     public static implicit operator RapString(string s) => new() { Value = s };
     public static implicit operator string(RapString s) => s.Value;
     public void WriteBinarized(BinaryWriter writer) => writer.WriteAsciiZ(Value);

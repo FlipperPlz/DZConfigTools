@@ -8,8 +8,8 @@ using DZConfigTools.Core.Models.Values;
 namespace DZConfigTools.Core.Models.Declarations; 
 
 public class RapVariableDeclaration : IRapStatement, IRapDeserializable<ParamFileParser.TokenDeclarationContext> {
-    private string VariableName { get; set; } = string.Empty;
-    private IRapLiteral VariableValue { get; set; } = new RapString();
+    public string VariableName { get; set; } = string.Empty;
+    public IRapLiteral VariableValue { get; set; } = new RapString();
 
     public void WriteBinarized(BinaryWriter writer) {
         writer.Write((byte) 1);

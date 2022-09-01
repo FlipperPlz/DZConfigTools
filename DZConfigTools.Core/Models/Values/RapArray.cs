@@ -6,7 +6,7 @@ using DZConfigTools.Core.IO;
 namespace DZConfigTools.Core.Models.Values; 
 
 public class RapArray : IRapDeserializable<ParamFileParser.LiteralArrayContext>, IRapArrayEntry {
-    private List<IRapArrayEntry> Entries { get; set; } = new();
+    public List<IRapArrayEntry> Entries { get; set; } = new();
     
     public void WriteBinarized(BinaryWriter writer) {
         writer.WriteCompressedInt(Entries.Count);

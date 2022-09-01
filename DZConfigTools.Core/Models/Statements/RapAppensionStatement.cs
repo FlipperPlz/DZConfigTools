@@ -7,8 +7,8 @@ using DZConfigTools.Core.Models.Values;
 namespace DZConfigTools.Core.Models.Statements; 
 
 public class RapAppensionStatement : IRapStatement, IRapDeserializable<ParamFileParser.ArrayAppensionContext> {
-    private string Target { get; set; } = string.Empty;
-    private RapArray Array { get; set; } = new();
+    public string Target { get; set; } = string.Empty;
+    public RapArray Array { get; set; } = new();
     
     public void WriteBinarized(BinaryWriter writer) {
         writer.Write((byte) 5);

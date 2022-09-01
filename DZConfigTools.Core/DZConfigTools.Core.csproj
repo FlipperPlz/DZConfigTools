@@ -4,6 +4,21 @@
         <TargetFramework>net6.0</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
+        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+        <PackageVersion>1.0.5</PackageVersion>
+        <Title>DZConfigTools.Core</Title>
+        <Authors>FlipperPlz, Ryann</Authors>
+        <Description> Parser for DayZ Config (cpp) files </Description>
+        <Copyright>Copyright (c) 2022 Ryann (Flipper)</Copyright>
+        <PackageProjectUrl>https://github.com/FlipperPlz/DZConfigTools</PackageProjectUrl>
+        <PackageLicenseUrl>https://raw.githubusercontent.com/FlipperPlz/DZConfigTools/main/LICENSE</PackageLicenseUrl>
+        <RepositoryUrl>https://github.com/FlipperPlz/DZConfigTools</RepositoryUrl>
+        <RepositoryType>git</RepositoryType>
+        <PackageTags>DayZ, cpp, parser, binarize</PackageTags>
+        <PackageReleaseNotes>- Added/edited a few of the methods used for interacting with ParamFiles.
+- Added ParamFileErrorListener
+- Added Ardalis.Result as library</PackageReleaseNotes>
+        <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     </PropertyGroup>
 
     <ItemGroup>

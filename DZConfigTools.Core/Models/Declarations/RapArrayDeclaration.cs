@@ -8,8 +8,8 @@ using DZConfigTools.Core.Models.Values;
 namespace DZConfigTools.Core.Models.Declarations; 
 
 public class RapArrayDeclaration :  IRapStatement, IRapDeserializable<ParamFileParser.ArrayDeclarationContext> {
-    private string ArrayName { get; set; } = string.Empty;
-    private RapArray ArrayValue { get; set; } = new();
+    public string ArrayName { get; set; } = string.Empty;
+    public RapArray ArrayValue { get; set; } = new();
     
     public void WriteBinarized(BinaryWriter writer) {
         writer.Write((byte) 2);
