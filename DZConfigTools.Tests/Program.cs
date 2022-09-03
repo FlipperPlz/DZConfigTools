@@ -2,8 +2,13 @@
 
 using DZConfigTools.Core.Models;
 
-var f = ParamFile.OpenFile(@"C:\Users\developer\Desktop\config.cpp");
-if (f.IsSuccess) {
-    f.Value.WriteToFile(@"C:\Users\developer\Desktop\testing\fullconfig.cpp", false);
-    f.Value.WriteToFile(@"C:\Users\developer\Desktop\testing\fullconfig.bin", false);
+using (var file = File.OpenRead(@"C:\Users\developer\Desktop\MinimalTestMod\config.cpp")) {
+    var f = ParamFile.OpenStream(file);
+    if (f.IsSuccess) {
+        Console.WriteLine(f.Value.WriteToStream().ToArray().Length);
+        Console.WriteLine("Monster Dong");
+    }
+    else {
+        Console.WriteLine(string.Join("\n", f.Errors));
+    }
 }

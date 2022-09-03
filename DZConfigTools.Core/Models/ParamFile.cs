@@ -148,7 +148,7 @@ public class ParamFile : IRapDeserializable<ParamFileParser.ComputationalStartCo
 
     public MemoryStream WriteToStream(bool binarized = true) {
         var fs = new MemoryStream();
-        using var writer = new BinaryWriter(fs);
+        var writer = new BinaryWriter(fs);
         if(binarized) WriteBinarized(writer);
         else foreach (var c in ToParseTree()) writer.Write(c);
         return fs;
