@@ -1,4 +1,5 @@
-﻿using Antlr4.Runtime;
+﻿using System.Text;
+using Antlr4.Runtime;
 using Ardalis.Result;
 using DZConfigTools.Core.Factories;
 using DZConfigTools.Core.Generated;
@@ -189,7 +190,13 @@ public class ParamFile : IRapDeserializable<ParamFileParser.ComputationalStartCo
 
     private static Result<ParamFile> ParseParamFile(Stream stream) {
         try {
-            var lexer = new ParamFileLexer(CharStreams.fromStream(stream));
+            byte[]? streamData = null;
+            var memStream = new MemoryStream();
+            stream.Seek(0, SeekOrigin.Begin);
+            stream.CopyTo(memStream);
+            memStream.Seek(0, SeekOrigin.Begin);
+
+            var lexer = new ParamFileLexer(CharStreams.fromStream(memStream));
             var tokens = new CommonTokenStream(lexer);
             var parser = new ParamFileParser(tokens);
             var errorListener = new ParamFileErrorListener();

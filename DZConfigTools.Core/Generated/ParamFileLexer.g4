@@ -27,8 +27,6 @@ LiteralInteger: Number;
 LiteralFloat: DecimalNumber | ScientificNumber;
 
 fragment EnforceEscapeSequence: '\\\\' | '\\"' | '\\\'';
-fragment Diget: [0-9];
-fragment Number: '-'? Diget+;
-fragment DecimalNumber:  Number ('.' Diget+)?;
-fragment ScientificNumber: DecimalNumber Scientific DecimalNumber;
-fragment Scientific: ('e'|'E') ('+'|'-');
+fragment Number: ('-')? [0-9]+;
+fragment DecimalNumber:  Number '.' [0-9]+;
+fragment ScientificNumber: DecimalNumber ('e'|'E') ('+'|'-') DecimalNumber;
