@@ -5,7 +5,7 @@
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-        <PackageVersion>1.0.9</PackageVersion>
+        <PackageVersion>1.1.0</PackageVersion>
         <Title>DZConfigTools.Core</Title>
         <Authors>FlipperPlz, Ryann</Authors>
         <Description> Parser for DayZ Config (cpp) files </Description>

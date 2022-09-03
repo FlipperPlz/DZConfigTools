@@ -20,7 +20,7 @@ Semicolon:          ';';
 Colon:              ':';
 Comma:              ',';
 DoubleQuote:        '"';
-Identifier: [a-zA-Z0-9_]+;
+Identifier: [a-zA-Z_] [a-zA-Z_0-9]*;
 
 LiteralString: '"' (EnforceEscapeSequence | .)*? '"';
 LiteralInteger: Number;
