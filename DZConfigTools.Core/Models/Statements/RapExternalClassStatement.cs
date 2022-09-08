@@ -17,7 +17,7 @@ public class RapExternalClassStatement : IRapStatement, IRapDeserializable<Param
     public string ToParseTree() => new StringBuilder("class ").Append(Classname).Append(';').ToString();
 
     public IRapDeserializable<ParamFileParser.ExternalClassDeclarationContext> ReadBinarized(BinaryReader reader) {
-        if (reader.ReadByte() != 4) throw new Exception("Expected external class.");
+        if (reader.ReadByte() != 3) throw new Exception("Expected external class.");
         Classname = reader.ReadAsciiZ();
         return this;
     }
