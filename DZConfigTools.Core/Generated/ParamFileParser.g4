@@ -9,12 +9,14 @@ computationalStart: statement*;
 statement: 
     deleteStatement           Semicolon        |
     arrayAppension            Semicolon        |
+    arrayTruncation           Semicolon        |
     arrayDeclaration          Semicolon        |
     tokenDeclaration          Semicolon        |
     classDeclaration          Semicolon        |
     externalClassDeclaration  Semicolon        ;
 
 arrayAppension: arrayName Add_Assign literalArray;
+arrayTruncation: arrayName Sub_Assign literalArray;
 deleteStatement: Delete identifier;
 
 externalClassDeclaration: Class classname=identifier;

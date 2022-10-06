@@ -11,6 +11,7 @@ WHITESPACES: [\r\n \t]                       -> channel(HIDDEN);
 Class:              'class';
 Delete:             'delete';
 Add_Assign:         '+=';
+Sub_Assign:         '-=';
 Assign:             '=';
 LSBracket:          '[';
 RSBracket:          ']';
