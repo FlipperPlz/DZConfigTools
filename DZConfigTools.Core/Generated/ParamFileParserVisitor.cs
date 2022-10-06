@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-// Generated from C:/Users/developer/Desktop/DZConfigTools/DZConfigTools.Core/Generated\ParamFileParser.g4 by ANTLR 4.10.1
+// Generated from /Users/ryannkelly/Desktop/PlayerDataBot/DZConfigTools/DZConfigTools.Core/Generated/ParamFileParser.g4 by ANTLR 4.10.1
 
 // Unreachable code detected
 #pragma warning disable 0162
@@ -50,6 +50,12 @@ public interface IParamFileParserVisitor<Result> : IParseTreeVisitor<Result> {
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
 	Result VisitArrayAppension([NotNull] ParamFileParser.ArrayAppensionContext context);
+	/// <summary>
+	/// Visit a parse tree produced by <see cref="ParamFileParser.arrayTruncation"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitArrayTruncation([NotNull] ParamFileParser.ArrayTruncationContext context);
 	/// <summary>
 	/// Visit a parse tree produced by <see cref="ParamFileParser.deleteStatement"/>.
 	/// </summary>

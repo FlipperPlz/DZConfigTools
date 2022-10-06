@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-// Generated from C:/Users/developer/Desktop/DZConfigTools/DZConfigTools.Core/Generated\ParamFileParser.g4 by ANTLR 4.10.1
+// Generated from /Users/ryannkelly/Desktop/PlayerDataBot/DZConfigTools/DZConfigTools.Core/Generated/ParamFileParser.g4 by ANTLR 4.10.1
 
 // Unreachable code detected
 #pragma warning disable 0162
@@ -65,6 +65,16 @@ public partial class ParamFileParserBaseVisitor<Result> : AbstractParseTreeVisit
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
 	public virtual Result VisitArrayAppension([NotNull] ParamFileParser.ArrayAppensionContext context) { return VisitChildren(context); }
+	/// <summary>
+	/// Visit a parse tree produced by <see cref="ParamFileParser.arrayTruncation"/>.
+	/// <para>
+	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
+	/// on <paramref name="context"/>.
+	/// </para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	public virtual Result VisitArrayTruncation([NotNull] ParamFileParser.ArrayTruncationContext context) { return VisitChildren(context); }
 	/// <summary>
 	/// Visit a parse tree produced by <see cref="ParamFileParser.deleteStatement"/>.
 	/// <para>

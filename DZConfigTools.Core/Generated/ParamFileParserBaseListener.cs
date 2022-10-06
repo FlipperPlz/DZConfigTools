@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-// Generated from C:/Users/developer/Desktop/DZConfigTools/DZConfigTools.Core/Generated\ParamFileParser.g4 by ANTLR 4.10.1
+// Generated from /Users/ryannkelly/Desktop/PlayerDataBot/DZConfigTools/DZConfigTools.Core/Generated/ParamFileParser.g4 by ANTLR 4.10.1
 
 // Unreachable code detected
 #pragma warning disable 0162
@@ -72,6 +72,18 @@ public partial class ParamFileParserBaseListener : IParamFileParserListener {
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitArrayAppension([NotNull] ParamFileParser.ArrayAppensionContext context) { }
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="ParamFileParser.arrayTruncation"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterArrayTruncation([NotNull] ParamFileParser.ArrayTruncationContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="ParamFileParser.arrayTruncation"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitArrayTruncation([NotNull] ParamFileParser.ArrayTruncationContext context) { }
 	/// <summary>
 	/// Enter a parse tree produced by <see cref="ParamFileParser.deleteStatement"/>.
 	/// <para>The default implementation does nothing.</para>
